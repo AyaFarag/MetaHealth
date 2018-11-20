@@ -8,13 +8,33 @@ use Kalnoy\Nestedset\NodeTrait;
 class Category extends Model
 {
     use NodeTrait;
-    
+
     protected $fillable = [
-        'name',
+        'name',"parent_id"
     ];
 
     public function post(){
 
         return $this->hasMany( App\Models\Post::class );
+    }
+
+    public function parent()
+    {
+        return $this->belongsTo( Category::class, "parent_id");
+    }
+
+    public function children()
+    {
+        return $this->hasMany( Category::class, "parent_id");
+    }
+    
+    public function ancestors()
+    {
+        return $this->hasMany( Category::class, "parent_id");
+    }
+    
+    public function descendants()
+    {
+        return $this->hasMany( Category::class, "parent_id");
     }
 }
