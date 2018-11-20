@@ -11,6 +11,52 @@ class CategorySeeder extends Seeder
      */
     public function run()
     {
-        factory(\App\Models\Category::class, 5) -> create();
+        $shops = [
+            [
+                'name' => 'Books',
+                    'children' => [
+                        [    
+                            'name' => 'Comic Book',
+                            'children' => [
+                                    ['name' => 'Marvel Comic Book'],
+                                    ['name' => 'DC Comic Book'],
+                                    ['name' => 'Action comics'],
+                            ],
+                        ],
+                        [    
+                            'name' => 'Textbooks',
+                                'children' => [
+                                    ['name' => 'Business'],
+                                    ['name' => 'Finance'],
+                                    ['name' => 'Computer Science'],
+                            ],
+                        ],
+                    ],
+                ],
+                [
+                    'name' => 'Electronics',
+                        'children' => [
+                        [
+                            'name' => 'TV',
+                            'children' => [
+                                ['name' => 'LED'],
+                                ['name' => 'Blu-ray'],
+                            ],
+                        ],
+                        [
+                            'name' => 'Mobile',
+                            'children' => [
+                                ['name' => 'Samsung'],
+                                ['name' => 'iPhone'],
+                                ['name' => 'Xiomi'],
+                            ],
+                        ],
+                    ],
+                ],
+        ];
+        foreach($shops as $shop)
+        {
+            \App\Models\Category::create($shop);
+        }
     }
 }
